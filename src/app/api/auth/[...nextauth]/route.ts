@@ -1,36 +1,41 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google"
-import AppleProvider from "next-auth/providers/apple"
-import DiscordProvider from "next-auth/providers/discord"
-import TwitterProvider from "next-auth/providers/twitter";
-import GithubProvider from "next-auth/providers/github";
+import { getProviders } from "@/app/api/auth/[...nextauth]/utils";
+import {prisma} from "@/db";
 
 /**
  * Configuration of authorization/authentication mechanisms.
  */
 const handler = NextAuth({
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID || "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
-        }),
-        AppleProvider({
-            clientId: process.env.APPLE_CLIENT_ID || "",
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
-        }),
-        DiscordProvider({
-            clientId: process.env.DISCORD_CLIENT_ID || "",
-            clientSecret: process.env.DISCORD_CLIENT_SECRET || ""
-        }),
-        TwitterProvider({
-            clientId: process.env.TWITTER_CLIENT_ID || "",
-            clientSecret: process.env.TWITTER_CLIENT_SECRET || ""
-        }),
-        GithubProvider({
-            clientId: process.env.GITHUB_CLIENT_ID || "",
-            clientSecret: process.env.GITHUB_CLIENT_SECRET || ""
-        })
-    ],
+    providers: getProviders(),
+    callbacks: {
+        async signIn({
+                user, account, profile,
+                email,
+                credentials
+        }) {
+            //Find user in db.
+            console.log("Sign in");
+            const persistedUser = await prisma.user.findUnique({
+                where: { email: user.email || "" }
+            });
+            console.log("First query to db");
+            if(persistedUser?.email) {
+                return true;
+            }
+            console.log("User not found. Custom row in db.")
+            // Persist if
+            await prisma.user.create({
+                data: { email: user.email || "" }
+            });
+            return true;
+        },
+        async jwt({token, user, account , trigger}) {
+            return token;
+        },
+        async session({session, token}) {
+            return session;
+        }
+    },
 });
 
-export { handler as GET, handler as POST}
+export {handler as GET, handler as POST}
