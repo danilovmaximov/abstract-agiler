@@ -1,9 +1,10 @@
 "use client"
 import {useSession} from "next-auth/react";
 import {
-    Card, CardBody, CardHeader, Grid, Heading, Skeleton, Text, GridItem
+    Grid, GridItem
 } from "@chakra-ui/react";
 import React from "react";
+import SystemNavigation from "@/componenets/SystemNavigation";
 
 export default function Dashboard() {
     // User session hook to get data about user session.
@@ -11,33 +12,17 @@ export default function Dashboard() {
 
     return (
         <Grid as={"article"}
-              bg={"white"}
+              bg={"darkmid.100"}
+              boxShadow={"dark-lg"}
               w={"90%"} h={"90%"}
-              p={"1rem"}
 
-              templateRows={"repeat(12, 1fr)"}
+              templateRows={"1fr repeat(11, 1fr)"}
               templateColumns={"repeat(12, 1fr)"}
-              gap={4}
-              borderRadius={"5px"}
+              gap={4} overflow={"hidden"}
+              borderRadius={"3px"}
         >
-            <GridItem rowSpan={2} colSpan={7}>
-
-                <Skeleton
-                    isLoaded={data?.user != null}
-                    w={"100%"} h={"100%"}
-                >
-                    <Card w={"100%"} h={"100%"}>
-                        <CardHeader>
-                            <Heading>Hi there, {data?.user?.email}</Heading>
-                        </CardHeader>
-                        <CardBody>
-                            <Text>
-                                what is going on?
-                            </Text>
-                        </CardBody>
-                    </Card>
-                </Skeleton>
-
+            <GridItem rowSpan={1} colSpan={12} >
+                <SystemNavigation/>
             </GridItem>
 
 
