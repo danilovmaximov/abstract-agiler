@@ -16,7 +16,7 @@ export default function Dashboard() {
               boxShadow={"dark-lg"}
               w={"90%"} h={"90%"}
 
-              templateRows={"30px repeat(11, 1fr)"}
+              templateRows={"1fr repeat(11, 1fr)"}
               templateColumns={"repeat(12, 1fr)"}
               gap={4} overflow={"hidden"}
               borderRadius={"3px"}
