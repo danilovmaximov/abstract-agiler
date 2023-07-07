@@ -4,19 +4,19 @@ import {BellIcon, CalendarIcon, DeleteIcon, HamburgerIcon} from "@chakra-ui/icon
 import {Children} from "@/global";
 
 const data = [
-    {icon: <CalendarIcon boxSize={3} color={"white"}/>, text: "Calendar", action: () => {console.log("calendar activated")} },
-    {icon: <BellIcon boxSize={3} color={"white"}/>, text: "Notifications", action: () => console.log("notifications activated")},
-    {icon: <DeleteIcon boxSize={3} color={"white"}/>, text: "Delete Chat", action: () => console.log("delete project")}
+    {icon: <CalendarIcon boxSize={3} color={"lightgrey"}/>, text: "Calendar", action: () => {console.log("calendar activated")} },
+    {icon: <BellIcon boxSize={3} color={"lightgrey"}/>, text: "Notifications", action: () => console.log("notifications activated")},
+    {icon: <DeleteIcon boxSize={3} color={"lightgrey"}/>, text: "Delete Chat", action: () => console.log("delete project")}
 ];
 
 const SystemNavigationMenu = () => (
-    <Square bg={"intgreen.100"} p={"0.5rem"}>
+    <Square bg={"intgreen.100"} py={"0.5rem"} px={"0.7rem"}>
         <HamburgerIcon boxSize={5} color={"white"}/>
     </Square>
 )
 
 const SystemNavigationRow = ({children} : Children) => (
-    <Flex>{children}</Flex>
+    <Flex color="grey">{children}</Flex>
 )
 
 type Items = {
@@ -32,7 +32,7 @@ const SystemNavigationRowItem = ({icon, text, action } : Items) => (
           borderRight={"1px"} borderColor={"darkmin.100"}
     >
         {icon}
-        <Text as="b" color="grey" fontSize="10px" px={"0.5rem"}>{text} </Text>
+        <Text as="b" color="lightgrey" fontSize="10px" px={"0.5rem"}>{text} </Text>
     </Flex>
 )
 
