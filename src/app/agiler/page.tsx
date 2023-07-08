@@ -6,6 +6,7 @@ import {
 import React from "react";
 import SystemNavigation from "@/componenets/SystemNavigation";
 import AppNavigation from "@/componenets/AppNavigation";
+import Communications from "@/componenets/ApplicationTabs/Communications";
 
 export default function Dashboard() {
     // User session hook to get data about user session.
@@ -17,17 +18,16 @@ export default function Dashboard() {
               boxShadow={"dark-lg"}
               w={"90%"} h={"90%"}
 
-              templateRows={"40px 40px repeat(11, 1fr)"}
-              templateColumns={"repeat(12, 1fr)"}
+              templateRows={"40px 40px 1fr"}
+              templateColumns={"1fr"}
               gap={4} overflow={"hidden"}
               borderRadius={"3px"}
         >
             <GridItem rowSpan={1} colSpan={12} >
                 <SystemNavigation/>
                 <AppNavigation>
-                    <Text>fist text</Text>
-                    <Text>fist text</Text>
-                    <Text>fist text</Text>
+                    <Communications/>
+
                 </AppNavigation>
             </GridItem>
 
