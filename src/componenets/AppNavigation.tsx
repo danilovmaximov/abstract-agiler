@@ -27,25 +27,22 @@ const AppNavigation = ({children} : Children) => {
             w={"100%"} h={"100%"}
             variant={"unstyled"}
             bg={"darkmin.100"}
-
         >
             <TabList>
-                <AppNavigationTab>First</AppNavigationTab>
-                <AppNavigationTab>Second</AppNavigationTab>
-                <AppNavigationTab>Third</AppNavigationTab>
-                <AppNavigationTab>Fourth</AppNavigationTab>
-                <AppNavigationTab>Fifth</AppNavigationTab>
+                <AppNavigationTab>Communications</AppNavigationTab>
+                <AppNavigationTab>Tasks</AppNavigationTab>
+                <AppNavigationTab>Repositories</AppNavigationTab>
             </TabList>
             <TabIndicator
                 mt="-4px"
                 height="2px"
                 bg="intgreen.100"
             />
-            <TabPanels>
+            <TabPanels h={"78vh"}>
                 {
                     React.Children.toArray(children)
                         .map((element, i) => (
-                            <TabPanel key={i}>
+                            <TabPanel key={i} h={"100%"}>
                                 {element}
                             </TabPanel>
                         ))
