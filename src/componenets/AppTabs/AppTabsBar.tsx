@@ -1,44 +1,21 @@
 import React from 'react';
 import {Flex, HStack, Text} from "@chakra-ui/react";
 import {Children} from "@/global";
-import App from "next/app";
 import {useDispatch} from "react-redux";
 import {AppDispatch} from "@/redux/store";
-import generalAppInfoSlice, {
+import {
     communicationTab, documentationTab,
     generalAppTabs,
     repositoryTab,
     tasksTab
 } from "@/redux/slices/generalAppInfoSlice";
 
-type AppTabsItemProps = {
-    active: boolean,
-    action: any
-} & Children;
-const AppTabsItem = ({children, active, action}: AppTabsItemProps) => {
-    const dispatch = useDispatch<AppDispatch>();
-
-    return (
-        <Text
-            borderBottom={active ? "3px" : "0px"}
-            borderColor={"intgreen.100"}
-            color={active ? "white" : "grey"}
-            onClick={() =>{
-                console.log(action);
-                dispatch(action())
-            }}
-        >
-            {children}
-        </Text>
-    )
-
-};
 
 type AppTabsItem = {
     type: string,
     name: string,
     action: any
-}
+};
 
 const data: AppTabsItem[] = [
     {
@@ -61,12 +38,36 @@ const data: AppTabsItem[] = [
         name: "Documentation",
         action: documentationTab
     },
-]
-const data2323 = [
-    "Communication", "Tasks", "Repo", "Documentation"
 ];
 
-const AppTabs = ({currentPage}) => {
+
+type AppTabsItemProps = {
+    active: boolean,
+    action: any
+} & Children;
+
+const AppTabsItem = ({children, active, action}: AppTabsItemProps) => {
+    const dispatch = useDispatch<AppDispatch>();
+
+    return (
+        <Text
+            borderBottom={active ? "3px" : "0px"}
+            borderColor={"intgreen.100"}
+            color={active ? "white" : "grey"}
+            onClick={() => dispatch(action()) }
+        >
+            {children}
+        </Text>
+    )
+
+};
+
+
+type AppTabsProps = {
+    currentPage: string
+};
+
+const AppTabsBar = ({currentPage} : AppTabsProps) => {
 
     return (
         <HStack
@@ -90,4 +91,4 @@ const AppTabs = ({currentPage}) => {
     );
 };
 
-export default AppTabs;
+export default AppTabsBar;
