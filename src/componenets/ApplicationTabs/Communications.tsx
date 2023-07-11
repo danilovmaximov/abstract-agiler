@@ -1,8 +1,23 @@
 import React from 'react';
-import {Card, CardBody, CardHeader, Grid, GridItem, Input, Text, UnorderedList} from "@chakra-ui/react";
+import {
+    Button,
+    Flex,
+    Card,
+    CardBody,
+    CardHeader,
+    Grid,
+    GridItem,
+    Input,
+    Text,
+    UnorderedList,
+    Heading, VStack
+} from "@chakra-ui/react";
 import {Children} from "@/global";
+import {AppDispatch, useAppSelector} from "@/redux/store";
+import {useDispatch} from "react-redux";
+import {decrement, increment} from "@/redux/slices/counterSlice";
 
-const CommunicationsCard = ({children} : Children) => {
+const CommunicationsCard = ({children}: Children) => {
 
     return (
         <Card w={"100%"} h={"100%"} bg={"darkmax.100"}>
@@ -14,34 +29,24 @@ const CommunicationsCard = ({children} : Children) => {
 }
 
 const Communications = () => {
+    const counter = useAppSelector((state) => state.counterSlice.value);
+    const dispatch = useDispatch<AppDispatch>();
+
     return (
-        <Grid
-            templateColumns={"repeat(12, 1fr)"}
-            templateRows={"repeat(12, 1fr)"}
-            gap={4}
+        <VStack
             h={"100%"}
         >
-            <GridItem
-                colSpan={12} rowSpan={11}
-            >
-                <CommunicationsCard>
-                    <Text>
-                        Hi there
-                    </Text>
-                </CommunicationsCard>
-            </GridItem>
+            <Heading>{counter}</Heading>
+            <Flex>
+                <Button onClick={() => dispatch(increment())}>
+                    Increment
+                </Button>
 
-            <GridItem colSpan={12}>
-                <CommunicationsCard>
-                    <Input
-                        color={"white"}
-                        placeholder={"Your message here"}
-                    />
-
-                </CommunicationsCard>
-            </GridItem>
-
-        </Grid>
+                <Button onClick={() => dispatch(decrement())}>
+                    Decrement
+                </Button>
+            </Flex>
+        </VStack>
     );
 };
 

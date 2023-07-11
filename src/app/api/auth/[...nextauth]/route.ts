@@ -1,18 +1,18 @@
-import NextAuth from "next-auth";
+import NextAuth, {AuthOptions} from "next-auth";
 import { getProviders } from "@/app/api/auth/[...nextauth]/utils";
 import {prisma} from "@/db";
 
 /**
  * Configuration of authorization/authentication mechanisms.
  */
-const handler = NextAuth({
+export const OPTIONS: AuthOptions = {
     providers: getProviders(),
     callbacks: {
         async signIn({
-                user, account, profile,
-                email,
-                credentials
-        }) {
+                         user, account, profile,
+                         email,
+                         credentials
+                     }) {
             //Find user in db.
             console.log("Sign in");
             const persistedUser = await prisma.user.findUnique({
@@ -26,7 +26,7 @@ const handler = NextAuth({
             // Persist if
             await prisma.user.create({
                 data: { email: user.email || "" }
-            });
+            } as any);
             return true;
         },
         async jwt({token, user, account , trigger}) {
@@ -36,6 +36,7 @@ const handler = NextAuth({
             return session;
         }
     },
-});
+}
+const handler = NextAuth(OPTIONS);
 
 export {handler as GET, handler as POST}
