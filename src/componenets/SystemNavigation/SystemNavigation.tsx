@@ -1,7 +1,8 @@
-import React, {MouseEventHandler} from 'react';
+import React, {MouseEventHandler, useEffect, useState} from 'react';
 import {Button, Flex, Menu, MenuButton, MenuItem, MenuList, Select, Square, Text} from "@chakra-ui/react";
 import {BellIcon, CalendarIcon, ChevronDownIcon, DeleteIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {Children} from "@/global";
+import SystemNavigationProjects from "@/componenets/SystemNavigation/SystemNavigaionProjects";
 
 const data = [
     {
@@ -22,7 +23,10 @@ const data = [
 ];
 
 const SystemNavigationMenu = () => (
-    <Square bg={"intgreen.100"} py={"0.5rem"} px={"0.7rem"}>
+    <Square w={"60px"}
+            bg={"intgreen.100"}
+            py={"0.5rem"} px={"0.7rem"}
+    >
         <HamburgerIcon boxSize={5} color={"white"}/>
     </Square>
 )
@@ -48,26 +52,7 @@ const SystemNavigationRowItem = ({icon, text, action}: Items) => (
     </Flex>
 )
 
-const SystemNavigationProjects = () => {
 
-    return (
-        <Menu>
-            <MenuButton
-                as={Button}
-                rightIcon={<ChevronDownIcon/>}
-                colorScheme={"grey"}
-                variant={"ghost"}
-                color={"grey"}
-            >
-                AbstractAgiler
-            </MenuButton>
-            <MenuList bg={"darkmin.100"}>
-                <MenuItem color="white" bg={"darkmin.100"} isDisabled>Agiler</MenuItem>
-                <MenuItem color="white" bg={"darkmin.100"}>CheChe</MenuItem>
-            </MenuList>
-        </Menu>
-    )
-}
 
 
 const SystemNavigation = () => {
@@ -86,8 +71,6 @@ const SystemNavigation = () => {
                     }
                 </SystemNavigationRow>
             </Flex>
-
-            <SystemNavigationProjects/>
         </Flex>
     );
 };
