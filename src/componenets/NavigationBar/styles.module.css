@@ -1,0 +1,24 @@
+.button {
+    all: unset;
+    cursor: pointer;
+}
+
+.active{
+    border-bottom: 1px solid var(--intgreen);
+}
+
+.navigationBarWrapper {
+    grid-area: navigation;
+    background-color: var(--darkmin);
+
+    display: flex;
+    align-items: center;
+}
+
+.navigationButton {
+   padding: 0.3rem;
+}
+
+.navigationButton a {
+
+}
