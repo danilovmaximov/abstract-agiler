@@ -1,7 +1,8 @@
 import './globals.css'
 import {Inter} from 'next/font/google'
-import React from "react";
 import {Children} from "@/global";
+import AuthProvider from "@/componenets/AuthProvider";
+import styles from "./styles.module.css"
 
 const inter = Inter({subsets: ['latin']})
 
@@ -10,13 +11,18 @@ export const metadata = {
     description: 'Agile chat and tracker.',
 }
 
-
 export default function RootLayout(
-    { children }: Children,
+    {children}: Children,
 ) {
     return (
+        <AuthProvider>
             <html lang="en">
-            <body className={inter.className}>{children}</body>
+                <body className={inter.className}>
+                    <main className={styles.mainBackground}>
+                        {children}
+                    </main>
+                </body>
             </html>
+        </AuthProvider>
     )
 }

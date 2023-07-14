@@ -1,24 +1,20 @@
-export default function Home() {
+import Link from "next/link";
+
+export default async function Home() {
 
     return (
-        <main>
+        <div>
             <div>
                 <h1>Agiler app {process.env.BUILD}</h1>
                 <span>
           Collaboration app for fast and agile iteration.
         </span>
                 <ul>
-
                     <li>
-                        <a href="/agiler">Go to client</a>
+                        <Link href={"/agiler"}>Go to app</Link>
                     </li>
-                    <li>
-
-                        <a href="/test">Go to test</a>
-                    </li>
-
                 </ul>
             </div>
-        </main>
+        </div>
     )
 }
