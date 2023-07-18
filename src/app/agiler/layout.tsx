@@ -1,18 +1,15 @@
 import {Children} from "@/global";
 import styles from "./agiler.module.css";
-import {SystemSettings} from "@/componenets/SystemSettings/SystemSettings";
-import NavigationBar from "@/componenets/NavigationBar/NavigationBar";
-import VerticalBar from "@/componenets/VerticalBar/VerticalBar";
+import NavigationBarWrapper from "@/componenets/NavigationBarWrapper";
 
+//export type Pages = "communications" | "tasks" | "repos" | "docs" | "none";
 
-export default function DashboardLayout({children}: Children) {
+export default async function DashboardLayout({children}: Children) {
+
     return (
         <div className={styles.dashboardWrapper}>
             <div className={styles.dashboardGrid}>
-                <SystemSettings/>
-                <NavigationBar/>
-                <VerticalBar/>
-                {children}
+                <NavigationBarWrapper/>
             </div>
         </div>
     )

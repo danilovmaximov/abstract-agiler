@@ -3,7 +3,7 @@ import {RxHamburgerMenu} from "react-icons/rx";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import {Children} from "@/global";
 
-async function SystemSettingsBurger() {
+function SystemSettingsBurger() {
     return (
         <div className={styles.burger}>
             <RxHamburgerMenu />
@@ -15,8 +15,7 @@ type ButtonProps = {
     text: string
 } & Children;
 
-async function SystemSettingsButton({text, children} : ButtonProps) {
-
+function SystemSettingsButton({text, children} : ButtonProps) {
     return (
         <button className={styles.button}>
             {children}
@@ -26,7 +25,7 @@ async function SystemSettingsButton({text, children} : ButtonProps) {
 }
 
 
-export async function SystemSettings() {
+export function SystemSettings() {
 
     return (
         <div className={styles.systemSettingWrapper}>

@@ -15,14 +15,14 @@ export default function RootLayout(
     {children}: Children,
 ) {
     return (
-        <AuthProvider>
-            <html lang="en">
+            <AuthProvider>
+                <html lang="en">
                 <body className={inter.className}>
-                    <main className={styles.mainBackground}>
-                        {children}
-                    </main>
+                <main className={styles.mainBackground}>
+                    {children}
+                </main>
                 </body>
-            </html>
-        </AuthProvider>
+                </html>
+            </AuthProvider>
     )
 }
